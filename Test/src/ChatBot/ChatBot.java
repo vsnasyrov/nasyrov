@@ -20,5 +20,18 @@ public class ChatBot {
             for (int i = 0; i <= number; i++){
                 System.out.println(i + " !");
             }
+            int an;
+            do {
+                System.out.println("11 + 1");
+                an = in.nextInt();
+                switch (an){
+                    case 100:
+                        System.out.println("YOU WIN!");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("No, pls try again");
+                }
+            }while (true);
         }
 }
