@@ -15,6 +15,10 @@ public class ChatBot {
             int remainder5 = in.nextInt();
             int remainder7 = in.nextInt();
             int remainder = (remainder3 * 70 + remainder5 * 21 + remainder7 * 15) % 105;
-            System.out.println("Your age is " + remainder + " that&#39;s a good time to start programming!");
+            System.out.println("Your age is " + remainder + " that's a good time to start programming! " + "\n pls tell me your number");
+            int number = in.nextInt();
+            for (int i = 0; i <= number; i++){
+                System.out.println(i + " !");
+            }
         }
 }
