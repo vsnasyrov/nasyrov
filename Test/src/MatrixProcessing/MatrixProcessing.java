@@ -11,22 +11,30 @@ public class MatrixProcessing {
         for (int i = 0; i < a1*b1; i++){
             matrix[i] = in.nextInt();
         }
-        int a2 = in.nextInt();
-        int b2 = in.nextInt();
-        int[] matrix2 = new int[a2*b2];
-        for (int i = 0; i < a2*b2; i++){
-            matrix2[i] = in.nextInt();
-        }
-        if (a1 == a2 && b1 == b2){
-            for (int i = 0; i < a2*b2; i++){
-                System.out.print((matrix[i] + matrix2[i]) + " ");
-                if(i%b2 == (b2-1)){
+        System.out.println("Const: ");
+        int c = in.nextInt();
+        for (int i = 0; i < a1*b1; i++){
+            System.out.print(matrix[i] *c + " ");
+            if(i%b1 == (b1-1)){
                     System.out.println();
                 }
-            }
         }
-        else{
-            System.out.println("ERROR");
-        }
+//        int a2 = in.nextInt();
+//        int b2 = in.nextInt();
+//        int[] matrix2 = new int[a2*b2];
+//        for (int i = 0; i < a2*b2; i++){
+//            matrix2[i] = in.nextInt();
+//        }
+//        if (a1 == a2 && b1 == b2){
+//            for (int i = 0; i < a2*b2; i++){
+//                System.out.print((matrix[i] + matrix2[i]) + " ");
+//                if(i%b2 == (b2-1)){
+//                    System.out.println();
+//                }
+//            }
+//        }
+//        else{
+//            System.out.println("ERROR");
+//        }
     }
 }
