@@ -8,8 +8,8 @@ public class CoffeeMachine {
         int money = 550,cups = 9, M = 400, W = 540, C = 120;
         int min;
         do {
-            System.out.println("Money = " +  money + "\n cups = "+ cups + "\n M = " + M + "\n W = " + W + "\n C = " + C );
-            System.out.println("What are you doing? buy/fill/take");
+
+            System.out.println("What are you doing? buy/fill/take/remaining/exit");
             String a = in.next();
             if (a.equals("buy")){
                 System.out.println("What you buy? Cappucino - 1, Late - 2, Espresso - 3");
@@ -48,6 +48,12 @@ public class CoffeeMachine {
             }
             else if (a.equals("take")){
                 money = 0;
+            }
+            else if (a.equals("remaining")){
+                System.out.println("Money = " +  money + "\n cups = "+ cups + "\n M = " + M + "\n W = " + W + "\n C = " + C );
+            }
+            else if (a.equals("exit")){
+                System.exit(0);
             }
         }while(true);
     }
