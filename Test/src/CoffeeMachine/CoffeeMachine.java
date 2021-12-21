@@ -5,25 +5,50 @@ import java.util.Scanner;
 public class CoffeeMachine {
     public static void main (String[] args){
         Scanner in = new Scanner(System.in);
-        int cups, M, W, C;
-        System.out.println("Enter W");
-        W = in.nextInt() /200;
-        System.out.println("Enter M");
-        M = in.nextInt() / 50;
-        System.out.println("Enter C");
-        C = in.nextInt() / 15;
-        System.out.println("Enter cups");
-        cups = in.nextInt();
-
-        int m_cups = Math.min(W, Math.min(M, C));
-        if (cups == m_cups){
-            System.out.println("Yes, i can doing " + cups + " cups");
-        }
-        else if (cups > m_cups){
-            System.out.println("No, i can doing only " + m_cups);
-        }
-        else if (cups < m_cups){
-            System.out.println("Yes, i can doing " + cups + " cups and " + (m_cups-cups));
-        }
+        int money = 550,cups = 9, M = 400, W = 540, C = 120;
+        int min;
+        do {
+            System.out.println("Money = " +  money + "\n cups = "+ cups + "\n M = " + M + "\n W = " + W + "\n C = " + C );
+            System.out.println("What are you doing? buy/fill/take");
+            String a = in.next();
+            if (a.equals("buy")){
+                System.out.println("What you buy? Cappucino - 1, Late - 2, Espresso - 3");
+                int number = in.nextInt();
+                if (number == 1){
+                    min = Math.min(W/200, Math.min(M/100, Math.min(C/12, cups)));
+                    if (min == 0){
+                        System.out.println("No ingredients");
+                    }
+                    else {
+                        W -=200;M-=100;C-=12;cups-=1;money+=6;
+                    }
+                }
+                if (number == 2){
+                    min = Math.min(W/350, Math.min(M/75, Math.min(C/20, cups)));
+                    if (min == 0){
+                        System.out.println("No ingredients");
+                    }
+                    else {
+                        W -=350;M-=75;C-=20;cups-=1;money+=7;
+                    }
+                }
+                if (number == 3){
+                    min = Math.min(W/250, Math.min(C/16, cups));
+                    if (min == 0){
+                        System.out.println("No ingredients");
+                    }
+                    else {
+                        W -=250;C-=16;cups-=1;money+=4;
+                    }
+                }
+            }
+            else if (a.equals("fill")){
+                System.out.println("Enter W, M, C, cups: ");
+                W = in.nextInt() + W;M = in.nextInt() + M;C = in.nextInt() + C;cups = in.nextInt() + cups;
+            }
+            else if (a.equals("take")){
+                money = 0;
+            }
+        }while(true);
     }
 }
