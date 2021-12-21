@@ -31,7 +31,15 @@ public class hangman {
             name2 = in.next().charAt(0);
             for (int i1 = 0; i1 < final_word.length(); i1++){
                 if (name2 == final_word.charAt(i1)){
+                    if (name[i1] == name2){
+                        i++;
+                        System.out.println("No Improvements");
+                    }
                     name[i1] = name2;
+                    i--;
+                }
+                else{
+                    System.out.println("That letter doesn't appear in the word");
                 }
                 System.out.print(name[i1]);
                 if (name[i1] != '-'){
