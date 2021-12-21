@@ -20,7 +20,15 @@ public class hangman {
 
         int rand = min + (int) (random() * (max-1+min));
         String final_word = word.get(rand);
-        System.out.println("Guest the word");
+        for (int i =0; i < final_word.length(); i++){
+            if (i < 2){
+                System.out.print(final_word.charAt(i));
+            }
+            else{
+                System.out.print("-");
+            }
+        }
+        System.out.println("\nGuest the word");
         String name = in.next();
         if (name.equals(final_word)){
             System.out.println("YOU WIN");
