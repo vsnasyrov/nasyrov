@@ -6,7 +6,7 @@ public class TicTacToe {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter pole");
-        String p = in.next();
+        String p = "_________";
         char[] p2 = new char[9];
         for (int i = 0; i < 9; i++) {
             p2[i] = p.charAt(i);
@@ -16,6 +16,7 @@ public class TicTacToe {
             }
         }
         int true_coord = 0;
+        boolean player = true;
         do {
             do {
                 System.out.println("Enter coordinates");
@@ -42,8 +43,16 @@ public class TicTacToe {
                         } else if (coord1 == 3 && coord2 == 3) {
                             true_coord = 8;
                         }
-                        p2[true_coord] = 'X';
-                        break;
+                        if (player == true) {
+                            p2[true_coord] = 'X';
+                            player = false;
+                            break;
+                        }
+                        else if (player == false){
+                            p2[true_coord] = 'O';
+                            player = true;
+                            break;
+                        }
                     } else {
                         System.out.println(" pls enter 1 to 3");
                     }
