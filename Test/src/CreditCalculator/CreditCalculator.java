@@ -2,6 +2,9 @@ package CreditCalculator;
 
 import java.util.Scanner;
 
+import static java.lang.Math.log;
+import static java.lang.Math.pow;
+
 public class CreditCalculator {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -10,31 +13,45 @@ public class CreditCalculator {
                 "Month 2: repaid 250\n" +
                 "Month 3: repaid 500\n" +
                 "The loan has been repaid!");
-
-        System.out.println("payment:");
-        int payment = in.nextInt();
-        System.out.println("m/p");
-        char m_p = in.next().charAt(0);
-        if (m_p == 'm'){
-            System.out.println("monthly payment: ");
-            int principal = in.nextInt();
-            if (payment%principal == 0) {
-                System.out.println("You must paying for " + payment/principal);
-            }
-            else{
-                System.out.println("You must paying for " + (payment/principal+1));
-            }
-        }
-        else if (m_p == 'p'){
+        System.out.println("a/n/p?");
+        String enter = in.next();
+        if (enter.charAt(0) == 'a') {
+            System.out.println("Loan: ");
+            double loan = in.nextDouble();
+            loan = loan / (12 * 100);
             System.out.println("months: ");
             int months = in.nextInt();
-            if (payment%months == 0){
-                System.out.println("principal = " + payment/months);
+            System.out.println("principal: ");
+            int principal = in.nextInt();
+            System.out.println("You must paying per month:  " + (Math.ceil(principal * (loan * pow(1 + loan, months)) / (pow(1 + loan, months) - 1))));
+        }
+        else if(enter.charAt(0) == 'n'){
+            System.out.println("Loan: ");
+            double loan = in.nextDouble();
+            loan = loan / (12 * 100);
+            System.out.println("payment:");
+            int payment = in.nextInt();
+            System.out.println("principal: ");
+            int principal = in.nextInt();
+            System.out.print("You must paying for " + (Math.ceil(log(payment / (payment - loan * principal)) / log(1 + loan))/12) + " Years");
+            if ((Math.ceil(log(payment / (payment - loan * principal)) / log(1 + loan))) %12 > 0){
+                System.out.print(" and " + ((Math.ceil(log(payment / (payment - loan * principal)) / log(1 + loan)))-
+                        (Math.ceil(log(payment / (payment - loan * principal)) / log(1 + loan))/12)) + " Months");
             }
-            else {
-                System.out.println("principal = " + payment/months + " but last month = " + (payment - payment/months*months));
-            }
+        }
+        else if (enter.charAt(0) == 'p'){
+            System.out.println("Loan: ");
+            double loan = in.nextDouble();
+            loan = loan / (12 * 100);
+            System.out.println("payment:");
+            int payment = in.nextInt();
+            System.out.println("months: ");
+            int months = in.nextInt();
+            System.out.println("Principal: " + (Math.ceil(payment / ((loan * pow(1 + loan, months)) / (pow(1 + loan, months) - 1)))));
 
+        }
+        else {
+            System.out.println("Pls take a/n/p");
         }
 
     }
