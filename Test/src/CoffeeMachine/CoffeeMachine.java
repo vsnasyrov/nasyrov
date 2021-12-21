@@ -5,9 +5,25 @@ import java.util.Scanner;
 public class CoffeeMachine {
     public static void main (String[] args){
         Scanner in = new Scanner(System.in);
-        int cups;
+        int cups, M, W, C;
+        System.out.println("Enter W");
+        W = in.nextInt() /200;
+        System.out.println("Enter M");
+        M = in.nextInt() / 50;
+        System.out.println("Enter C");
+        C = in.nextInt() / 15;
         System.out.println("Enter cups");
         cups = in.nextInt();
-        System.out.println("W = " + cups * 200 + "\n M = " + cups*50 + "\n C = " + cups*15);
+
+        int m_cups = Math.min(W, Math.min(M, C));
+        if (cups == m_cups){
+            System.out.println("Yes, i can doing " + cups + " cups");
+        }
+        else if (cups > m_cups){
+            System.out.println("No, i can doing only " + m_cups);
+        }
+        else if (cups < m_cups){
+            System.out.println("Yes, i can doing " + cups + " cups and " + (m_cups-cups));
+        }
     }
 }
