@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 public class MatrixProcessing {
+    private static double d = 0;
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         do {
-            System.out.println("+/c/*/T/e(exit)?");
+            System.out.println("+/c/*/T/d(determ)/i(inverse)/e(exit)?");
             char what = in.next().charAt(0);
             if (what == 'e'){
                 System.exit(0);
@@ -15,11 +16,21 @@ public class MatrixProcessing {
             for (int i = 0; i < a1 * b1; i++) {
                 matrix[i] = in.nextInt();
             }
+            int c = 0;
+
+            int[][] matrix2 = new int[a1][b1];
+            for (int i = 0; i < a1; i++) {
+                for (int i1 = 0; i1 < b1; i1++) {
+                    matrix2[i][i1] = matrix[c];
+                    c++;
+                }
+            }
+            c = 0;
             if (what == 'c') {
                 System.out.println("Const: ");
-                int c = in.nextInt();
+                int q = in.nextInt();
                 for (int i = 0; i < a1 * b1; i++) {
-                    System.out.print(matrix[i] * c + " ");
+                    System.out.print(matrix[i] * q + " ");
                     if (i % b1 == (b1 - 1)) {
                         System.out.println();
                     }
@@ -27,27 +38,20 @@ public class MatrixProcessing {
             } else if (what == '+') {
                 int a2 = in.nextInt();
                 int b2 = in.nextInt();
-                int[] matrix2 = new int[a2 * b2];
+                int[] matrix3 = new int[a2 * b2];
                 for (int i = 0; i < a2 * b2; i++) {
-                    matrix2[i] = in.nextInt();
+                    matrix3[i] = in.nextInt();
                 }
                 if (a1 == a2 && b1 == b2) {
                     for (int i = 0; i < a2 * b2; i++) {
-                        System.out.print((matrix[i] + matrix2[i]) + " ");
+                        System.out.print((matrix[i] + matrix3[i]) + " ");
                         if (i % b2 == (b2 - 1)) {
                             System.out.println();
                         }
                     }
                 }
             } else if (what == '*') {
-                int c = 0;
-                int[][] matrix2 = new int[a1][b1];
-                for (int i = 0; i < a1; i++) {
-                    for (int i1 = 0; i1 < b1; i1++) {
-                        matrix2[i][i1] = matrix[c];
-                        c++;
-                    }
-                }
+
                 int a2 = in.nextInt();
                 int b2 = in.nextInt();
                 int[][] matrix3 = new int[a2][b2];
@@ -76,14 +80,7 @@ public class MatrixProcessing {
                 }
             }
             else if (what == 'T'){
-                int c = 0;
-                int[][] matrix2 = new int[a1][b1];
-                for (int i = 0; i < a1; i++) {
-                    for (int i1 = 0; i1 < b1; i1++) {
-                        matrix2[i][i1] = matrix[c];
-                        c++;
-                    }
-                }
+
                 System.out.println("Main diagonal (m)\n" +
                         "Side diagonal(s)\n" +
                         "Vertical line(v)\n" +
@@ -144,6 +141,39 @@ public class MatrixProcessing {
 
                 }
             }
+            else if (what == 'd'){
+                if (a1 == b1){
+                    int m = 1;
+                    d(matrix2, m);
+                    System.out.println("Determinant = " + d);
+                }
+                else{
+                    System.out.println("ERROR");
+                }
+            }
+            else if (what == 'i'){
+
+            }
+
         } while(true);
+    }
+    public static void d (int[][] matrix2, double m){
+        if (matrix2.length > 1){
+            int [][] matrix3 = new int[matrix2.length - 1][matrix2[0].length - 1];
+            for (int i = 0; i < matrix2[0].length; i++) {
+                for (int i1 = 1; i1 < matrix2.length; i1++) {
+                    for (int i2 = 0; i2 < matrix2[0].length; i2++) {
+                        if (i2 < i)
+                            matrix3[i1 - 1][i2] = matrix2[i1][i2];
+                        else if (i2 > i)
+                            matrix3[i1 - 1][i2 - 1] = matrix2[i1][i2];
+                    }
+                }
+                double n_m = Math.pow(-1, i + 2) * matrix2[0][i] * m;
+                d(matrix3, n_m);
+            }
+        }
+        else
+            d += m * matrix2[0][0];
     }
 }
